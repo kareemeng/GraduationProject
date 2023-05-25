@@ -23,10 +23,7 @@ export const createdeepfake = asyncHandler(
         req.body.video = uploadedFile.originalname;
         // console.log(req.body.video);
         const document = await deepfake.create({ video: req.body.video });
-        res.status(201).render('deepfake', {
-            data: document,
-            message: 'Deepfake failed detected',
-        });
+         res.status(201).json({ data: document });
     }
 );
 

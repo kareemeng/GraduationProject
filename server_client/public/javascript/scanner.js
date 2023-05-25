@@ -25,7 +25,7 @@ fileInput.addEventListener('change', () => {
             method: 'POST',
             body: formData,
         })
-            .then((response) => response)
+            .then((response) => response.json())
             .then((data) => {
                 // Handle the response from the server
                 console.log('Upload response:', data);
