@@ -19,10 +19,6 @@ export const createdeepfake = asyncHandler(
         }
         // Access the uploaded file using req.file
         const uploadedFile = req.file;
-        // console.log('Uploaded file:', uploadedFile);
-        // console.log('File name:', uploadedFile.originalname);
-        // console.log('File size:', uploadedFile.size);
-        // console.log('File MIME type:', uploadedFile.mimetype);
         // Process the uploaded video here (e.g., save to a database, perform operations, etc.)
         req.body.video = uploadedFile.originalname;
         // console.log(req.body.video);
@@ -36,7 +32,7 @@ export const createdeepfake = asyncHandler(
 
 // @desc    Get Single image for deepfake
 // @route   Get /api/v1/brands/:id/deepfake
-// @access  Piblic
+// @access  Public
 export const getPredict = (req: Request, res: Response, next: NextFunction) => {
     res.render('deepfake', { message: 'Deepfake successfully detected' });
 };
