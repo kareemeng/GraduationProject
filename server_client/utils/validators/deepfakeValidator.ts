@@ -12,21 +12,17 @@
 // See the License for the specific language governing permissions and
 // limitations under the License.
 
-import { body, check } from 'express-validator';
+import { check } from 'express-validator';
 import validatorMiddleware from '../../middlewares/validatorMiddleware';
 
-
-
 export const createdeepfakeValidator = [
-    body('video')
-        .exists()
-        .withMessage('video is required')
-        .isString()
-        .withMessage('video must be a string')
-        .trim()
-        .escape(),
+    check('video').custom((value, { req }) => {
+        if (!req.file) {
+            throw new Error('video is required');
+        }
+        return true;
+    }),
     validatorMiddleware,
 ];
-
 
 // export default BrandValidator;

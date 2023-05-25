@@ -1,10 +1,10 @@
-import { Request, Response } from 'express';
+import { NextFunction, Request, Response } from 'express';
 import asyncHandler from 'express-async-handler';
 import { uploadSingleVideo } from '../middlewares/uploadVideoMiddleware';
 import deepfake from '../models/deepfakeModel';
 
 // @desc    Upload Single image for deepfake
-// @route   POST /api/v1/brands/:id/deepfake
+// @route   POST /api/v1/deepfake/:id/deepfake
 // @access  Private
 export const uploaddeepfakeVideo = uploadSingleVideo('video');
 
@@ -19,14 +19,24 @@ export const createdeepfake = asyncHandler(
         }
         // Access the uploaded file using req.file
         const uploadedFile = req.file;
-        console.log('Uploaded file:', uploadedFile);
-        console.log('File name:', uploadedFile.originalname);
-        console.log('File size:', uploadedFile.size);
-        console.log('File MIME type:', uploadedFile.mimetype);
+        // console.log('Uploaded file:', uploadedFile);
+        // console.log('File name:', uploadedFile.originalname);
+        // console.log('File size:', uploadedFile.size);
+        // console.log('File MIME type:', uploadedFile.mimetype);
         // Process the uploaded video here (e.g., save to a database, perform operations, etc.)
         req.body.video = uploadedFile.originalname;
-        console.log(req.body.video);
+        // console.log(req.body.video);
         const document = await deepfake.create({ video: req.body.video });
-        res.status(201).render('deepfake', { data: document ,message:'Deepfake Created Successfully'});
+        res.status(201).render('deepfake', {
+            data: document,
+            message: 'Deepfake failed detected',
+        });
     }
 );
+
+// @desc    Get Single image for deepfake
+// @route   Get /api/v1/brands/:id/deepfake
+// @access  Piblic
+export const getPredict = (req: Request, res: Response, next: NextFunction) => {
+    res.render('deepfake', { message: 'Deepfake successfully detected' });
+};

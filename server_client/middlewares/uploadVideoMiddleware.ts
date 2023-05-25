@@ -20,14 +20,14 @@ const multerOptions = () => {
     });
 
     // 2- Memory Storage Engine
-    //const multerStorage = multer.diskStorage();
 
     const multerFilter = (
         req: Request,
         file: Express.Multer.File,
         cb: Function
     ) => {
-        if (file.mimetype.startsWith('video/')) {
+
+        if (file.mimetype.startsWith('video')) {
             cb(null, true);
         } else {
             cb(
@@ -38,6 +38,7 @@ const multerOptions = () => {
     };
 
     const upload = multer({ storage: multerStorage, fileFilter: multerFilter });
+    
     return upload;
 };
 

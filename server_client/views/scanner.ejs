@@ -20,35 +20,29 @@
         <div class="text">
             <h1>Scan & Detect Deepfake Videos</h1>
         </div>
-        <form action="/api/v1/deepfake/" method="post">
-            <div class="column is-4">
-                <div class="container">
-                    <div class="card">
-                        <h3>Upload Video</h3>
-                        <div class="drop_box">
-                            <header>
-                                <h4>Select File here</h4>
-                            </header>
-                            <p>Files Supported: mp4</p>
-                            <input
-                                type="file"
-                                hidden
-                                accept=".mp4"
-                                id="fileID"
-                                style="display: none"
-                            />
-                            <button
-                                class="btn"
-                                id="chooseVideoBtn"
-                                type="button"
-                            >
-                                Choose Video
-                            </button>
-                        </div>
+        <div class="column is-4">
+            <div class="container">
+                <div class="card">
+                    <h3>Upload Video</h3>
+                    <div class="drop_box">
+                        <header>
+                            <h4>Select File here</h4>
+                        </header>
+                        <p>Files Supported: mp4</p>
+                        <input
+                            type="file"
+                            hidden
+                            accept=".mp4"
+                            id="fileID"
+                            style="display: none"
+                        />
+                        <button class="btn" id="chooseVideoBtn" type="button">
+                            Choose Video
+                        </button>
                     </div>
                 </div>
             </div>
-        </form>
+        </div>
         <script src="/javascript/scanner.js"></script>
     </body>
 </html>
