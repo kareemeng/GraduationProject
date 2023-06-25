@@ -5,7 +5,6 @@ import express from 'express';
 import bodyParser from 'body-parser';
 import dotenv from 'dotenv';
 import morgan from 'morgan';
-import { Server } from 'socket.io';
 // modules from this project
 // Database
 import { dbConnection } from '../config/database';
@@ -72,25 +71,4 @@ process.on('unhandledRejection', (err: Error) => {
 
         process.exit(1);
     });
-});
-// Socket.io connection
-const serverio = require('http').createServer(app);
-const io = new Server(server, {
-    cors: {
-        origin: '*',
-        methods: '*',
-        credentials: true,
-    },
-});
-io.on('connection', async (socket) => {
-    socket.on('prediction', async (prediction) => {
-        console.log(prediction);
-    });
-
-    socket.on('disconnect', () => {
-        console.log('user disconnected');
-    });
-});
-serverio.listen(3000, () => {
-    console.log('server is running......');
 });
