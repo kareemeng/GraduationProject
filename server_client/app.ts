@@ -7,14 +7,14 @@ import dotenv from 'dotenv';
 import morgan from 'morgan';
 // modules from this project
 // Database
-import { dbConnection } from '../config/database';
+import { dbConnection } from './config/database';
 // Routes
-import DeepfakeRoute from '../routes/deepfakeRoute';
-import UserRoute from '../routes/userRoute';
-import indexRouter from '../routes/indexRouter';
+import DeepfakeRoute from './routes/deepfakeRoute';
+import UserRoute from './routes/userRoute';
+import indexRouter from './routes/indexRouter';
 // Error Handling
-import ApiError from '../utils/apiError';
-import globalError from '../middlewares/errorMiddleware';
+import ApiError from './utils/apiError';
+import globalError from './middlewares/errorMiddleware';
 
 dotenv.config({ path: 'config.env' });
 
@@ -27,13 +27,13 @@ const app = express();
 // Middlewares
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(express.static(path.join(__dirname, '../uploads')));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.static(path.join(__dirname, '/uploads')));
+app.use(express.static(path.join(__dirname, '/public')));
 
 // app.use(express.json());
 // app.use(express.urlencoded({ extended: true }));
 
-app.set('views', path.join(__dirname, '../views'));
+app.set('views', path.join(__dirname, '/views'));
 app.set('view engine', 'ejs');
 
 // Development logging
@@ -68,7 +68,6 @@ process.on('unhandledRejection', (err: Error) => {
     console.error(`unhandledRejection Errors: ${err.name} | ${err.message}`);
     server.close(() => {
         console.log(`Shutting down.....`);
-
         process.exit(1);
     });
 });

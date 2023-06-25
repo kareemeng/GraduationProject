@@ -1,7 +1,7 @@
 import fs from 'fs';
 import colors from 'colors/safe';
 import dotenv from 'dotenv';
-import ProductModel from '../../models/productModel';
+// import ProductModel from '../../models/productModel';
 import { dbConnection } from '../../config/database';
 
 dotenv.config();
@@ -17,7 +17,7 @@ const products = JSON.parse(
 // Insert data into DB
 const insertData = async () => {
     try {
-        await ProductModel.create(products);
+        // await ProductModel.create(products);
 
         console.log(colors.green('Data Inserted'));
         process.exit();
@@ -29,7 +29,7 @@ const insertData = async () => {
 // Delete data from DB
 const destroyData = async () => {
     try {
-        await ProductModel.deleteMany();
+        // await ProductModel.deleteMany();
         console.log(colors.red('Data Destroyed'));
         process.exit();
     } catch (error) {
